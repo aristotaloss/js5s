@@ -38,7 +38,7 @@ func StartServer(fs *gorune.FileSystem, revision int) {
 
 func handleConnection(fs *gorune.FileSystem, con *net.TCPConn, revision int) {
 	reader := bufio.NewReader(con)
-	temp := make([]byte, 1024)
+	temp := make([]byte, 4)
 
 	for {
 		opcode, err := reader.ReadByte()
