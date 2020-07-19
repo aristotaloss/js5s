@@ -66,11 +66,6 @@ func handleConnection(fs *gorune.FileSystem, con *net.TCPConn, revision int) {
 
 			if index == 255 && file == 255 {
 				writeChunked(con, 255, 255, opcode == 0, globalDescriptor)
-			} else if index == 255 {
-				data, err := fs.ReadRaw(fs.Indices[255].Entries[file])
-				if err == nil {
-					writeChunked(con, 255, file, opcode == 0, trim(data))
-				}
 			} else {
 				data, err := fs.ReadRaw(fs.Indices[index].Entries[file])
 				if err == nil {
